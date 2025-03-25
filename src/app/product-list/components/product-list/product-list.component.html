@@ -1,0 +1,6 @@
+<app-search (searchValue)="searchingValues($event)" ></app-search>
+
+
+<div class="itemslist">
+    <app-product [singleItem]="myItem" *ngFor="let myItem of myItems" ></app-product>
+</div>

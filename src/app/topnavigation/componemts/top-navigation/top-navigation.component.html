@@ -1,0 +1,20 @@
+<p>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toggleNav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- <button routerLink="">My App</button> -->
+   
+      <span mat-icon-button color="primary" aria-label="Example icon button with a home icon" routerLink=""> 
+        <mat-icon class="icon">home</mat-icon>
+      </span>
+
+      
+      <span class="example-spacer"></span>
+      <a mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" >
+        <mat-icon >shopping_cart_checkout</mat-icon>{{count.length}}
+
+      </a>
+    
+    </mat-toolbar>
+  </p>
