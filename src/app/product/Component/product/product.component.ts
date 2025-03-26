@@ -14,7 +14,14 @@ export class ProductComponent {
   constructor( private cartService: CartService){}
 
   addToCart(){
-        this.cartService.addtoCart(this.singleItem)
+
+    if(this.singleItem.inStock >0 ){
+      this.cartService.addtoCart(this.singleItem)
+      this.singleItem.inStock--
+    }
+        else{
+          alert(" Not Available")
+        }
   }
 
 }

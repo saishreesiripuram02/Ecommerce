@@ -1,5 +1,12 @@
 export interface Item {
-  name: string,
-  description:string,
-  price:number
+  id ?: number;
+  name: string;
+  description:string;
+  price:number;
+  inStock:number;
+}
+
+export interface ItemByQuantity{
+  item : Item;
+  quantity : number;
 }

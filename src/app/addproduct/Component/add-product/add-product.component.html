@@ -15,6 +15,11 @@
         <span matTextPrefix>$&nbsp;</span>
         <span matTextSuffix>.00</span>
       </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Available</mat-label>
+        <input matInput  placeholder="Ex. 94105"  formControlName="inStock">
+        <mat-hint ></mat-hint>
+      </mat-form-field>
 
     <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="product.invalid">Add</button>
   </form>

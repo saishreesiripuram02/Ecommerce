@@ -5,8 +5,12 @@
     <mat-card-content>
       <p>{{singleItem.description}}</p>
     </mat-card-content>
+
+    <mat-card-content *ngIf="singleItem.inStock">
+      <p>{{singleItem.inStock}}</p>
+    </mat-card-content>
     <mat-card-actions>
-      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="addToCart()">
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="addToCart()" [disabled]="singleItem.inStock < 1" >
         <mat-icon >add</mat-icon>
       </button>
     </mat-card-actions>
