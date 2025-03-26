@@ -20,9 +20,8 @@ export class CartComponent {
   }
 
   ngOnInit(){
-    this.cartQuantities =  this.cartService.getCartGroupByQuantity();
+    this.cartQuantities =  this.cartService.getCartValue();
 
-    console.log(this.cartQuantities)
   }
   getTotalCost() {
     return this.cartQuantities.reduce((acc, cartItem) => acc + cartItem.item.price, 0);
@@ -31,5 +30,8 @@ export class CartComponent {
   getALL(){
     return this.cartQuantities.reduce((acc, cartItem) => acc + (cartItem.item.price * cartItem.quantity), 0);
 
-}
+  }
+
+
+  
 }
