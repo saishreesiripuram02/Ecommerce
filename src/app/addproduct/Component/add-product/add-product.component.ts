@@ -17,9 +17,7 @@ export class AddProductComponent {
     inStock : new FormControl("", [Validators.required]),
   })
 
-  constructor( private itemService:ItemService){
-
-  }
+  constructor( private itemService:ItemService){}
   addItems(){
     const newItem = this.product.value as any;
     this.itemService.AddedItemFromAPi(newItem).subscribe(val => {
