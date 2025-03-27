@@ -8,11 +8,17 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavigationModule } from './sidenavigation/sidenavigation.module';
 import { TopnavigationModule } from './topnavigation/topnavigation.module';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateProductComponent } from './update-product/update-product.component';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UpdateProductComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     SidenavigationModule,
     TopnavigationModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

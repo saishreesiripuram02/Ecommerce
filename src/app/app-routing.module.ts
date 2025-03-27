@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UpdateProductComponent } from './update-product/update-product.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   {
@@ -13,14 +15,22 @@ const routes: Routes = [
 {
   path:"cart",
   loadChildren:()=> import("./cart/cart.module").then(mod => mod.CartModule)
+},
+{
+  path:"update/:id",
+  component:UpdateProductComponent
 }
-
   ,
   { 
     path:"",
     redirectTo:"/home",
     pathMatch:'full'
+  },
+  {
+     path:"**",
+     component:ErrorComponent
   }
+
 ];
 
 @NgModule({

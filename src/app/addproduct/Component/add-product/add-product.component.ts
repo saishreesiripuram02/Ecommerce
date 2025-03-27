@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CartItem } from 'src/app/Interface/cart-item';
 import { Item } from 'src/app/Interface/items';
 import { ItemService } from 'src/app/Services/item.service';
 
@@ -9,6 +10,9 @@ import { ItemService } from 'src/app/Services/item.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
+
+  id!:CartItem
+
    
   product =  new FormGroup({
     name : new FormControl( "", [Validators.required]),
@@ -25,4 +29,6 @@ export class AddProductComponent {
         this.product.reset();
     });
   }
-}
+
+
+  }

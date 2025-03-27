@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { catchError, of } from 'rxjs';
 import { Item } from 'src/app/Interface/items';
 import { CartService } from 'src/app/Services/cart.service';
+import { ItemService } from 'src/app/Services/item.service';
 
 @Component({
   selector: 'app-product',
@@ -10,8 +13,13 @@ import { CartService } from 'src/app/Services/cart.service';
 export class ProductComponent {
 
   @Input() singleItem !: Item
+  @Output() onDeleting = new EventEmitter()
 
-  constructor( private cartService: CartService){}
+  constructor( private cartService: CartService ,
+              private itemService:ItemService
+   ){}
+
+
 
   addToCart(){
 
@@ -22,6 +30,25 @@ export class ProductComponent {
         else{
           alert(" Not Available")
         }
+  }
+
+  delete(){
+
+    if(this.singleItem.id){
+     this.itemService.deletFromApi(this.singleItem.id).pipe(catchError((err : HttpErrorResponse) =>  of(err))).subscribe( resp =>{
+      console.log(resp)
+
+      if(resp.ok){
+        alert("Successfully deleted");
+        this.onDeleting.emit(true);
+      }else{
+        alert("Failed to delete")
+      }
+      
+
+     })
+    }
+
   }
 
 }
