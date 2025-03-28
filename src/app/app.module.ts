@@ -13,13 +13,15 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import {MatButtonModule} from '@angular/material/button';
+import { ItemDetailsComponent } from './item-details/item-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UpdateProductComponent,
-    ErrorComponent
+    ErrorComponent,
+    ItemDetailsComponent
   ],
   imports: [
     BrowserModule,

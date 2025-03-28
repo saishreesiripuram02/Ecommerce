@@ -16,9 +16,14 @@ export class ItemService {
 
     
   loadItemByIdFromApi(id:string){
+
+    if(isNaN(id as any)){
+      throw("Invalid id");
+    }
+
     let url = `${SERVER_URL}/items/${id}`;
       return this.httpClient.get<Item>(url, {observe:"response"});
-    }
+  }
 
    AddedItemFromAPi(eachItem:Item){
     return this.httpClient.post<Item>(`${SERVER_URL}/items`, eachItem)
