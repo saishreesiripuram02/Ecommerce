@@ -12,26 +12,14 @@ import { CartService } from 'src/app/Services/cart.service';
 
 export class CartComponent {
   displayedColumns = ['name', 'quantity', 'cost', 'totalCost'];
-
   cartQuantities : CartItem[] = [];
-
-  constructor(private cartService : CartService){
-
-  }
+   constructor(private cartService : CartService){}
 
   ngOnInit(){
     this.cartQuantities =  this.cartService.getCartValue();
-
   }
-  getTotalCost() {
-    return this.cartQuantities.reduce((acc, cartItem) => acc + cartItem.item.price, 0);
-  }
-
   getALL(){
     return this.cartQuantities.reduce((acc, cartItem) => acc + (cartItem.item.price * cartItem.quantity), 0);
-
   }
-
-
-  
+ 
 }

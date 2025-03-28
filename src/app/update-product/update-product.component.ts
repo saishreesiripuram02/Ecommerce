@@ -55,8 +55,6 @@ export class UpdateProductComponent implements OnInit {
           if(resp.ok){
               alert("Succefully Updated");
               this.router.navigateByUrl("/")
-
-
           }else{
             alert("Failed to Update")
           }

@@ -1,0 +1,14 @@
+.details{
+    border: 2px solid rgb(135, 135, 179);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%
+}
+.details:hover{
+    background-color: bisque;
+    font-size: 15px; 
+    color: brown;
+    width:50%;
+    align-items: center
+}

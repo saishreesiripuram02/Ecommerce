@@ -1,8 +1,13 @@
-<ng-container *ngIf="isIdValid; else INVALID">
-    <p>{{item?.name}}</p>
-    <p>{{item?.description}}</p>
-    <p>{{item?.price}}</p>
-</ng-container>
-<ng-template #INVALID>
-    Invalid ID : {{id}}
-</ng-template>
+<div class="details">
+    <ng-container *ngIf="isIdValid; else INVALID">
+            <strong>Name:<span>{{item?.name}}</span></strong>
+            <strong>Description:<span>{{item?.description}}</span></strong>
+            <strong>Cost:<span>${{item?.price}}</span></strong>
+        <!-- <p>{{item?.description}}</p>
+        <p>{{item?.price}}</p> -->
+    </ng-container>
+    <ng-template #INVALID>
+        Invalid ID : {{id}}
+    </ng-template>
+    
+</div>
