@@ -1,30 +1,25 @@
 <mat-card class="example-card">
-    <mat-card-header>
-
-
-      <mat-card-content>
-        <p>{{singleItem.id}}</p>
-      </mat-card-content><br>
+  <mat-card-header>
+    <mat-card-title-group>
       <mat-card-title>{{singleItem.name}}</mat-card-title>
-    </mat-card-header>
-
-
-    <mat-card-content>
-      <p>{{singleItem.description}}</p>
-    </mat-card-content>
-
-    <mat-card-content *ngIf="singleItem.inStock">
-      <p>{{singleItem.inStock}}</p>
-    </mat-card-content>
-    <mat-card-actions>
+      <mat-card-subtitle>{{singleItem.inStock}}</mat-card-subtitle>
+      <!-- <img mat-card-md-image src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fno-image-available&psig=AOvVaw1k0M2elGL0gC8IZetdyMdM&ust=1743199313855000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJDbt9Chq4wDFQAAAAAdAAAAABAY"  alt="Image of a Shiba Inu"> -->
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    {{singleItem.description}}
+  </mat-card-content>
+   <mat-card-actions>
       <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="addToCart()" [disabled]="singleItem.inStock < 1" >
         <mat-icon >add</mat-icon>
       </button>
-
-      <a mat-raised-button color="primary" class="btn" routerLink="/update/{{singleItem.id}}" >Update</a>
-      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="delete()" [disabled]="singleItem.inStock < 1" >
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"  routerLink="/update/{{singleItem.id}}" >
+        <mat-icon >edit</mat-icon>
+      </button>
+      <!-- <a mat-raised-button color="primary" class="btn" routerLink="/update/{{singleItem.id}}" >update</a> -->
+      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="delete()">
         <mat-icon >delete</mat-icon>
       </button>
 
     </mat-card-actions>
-  </mat-card>
+</mat-card>

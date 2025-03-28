@@ -12,6 +12,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ErrorComponent } from './error/error.component';
     TopnavigationModule,
     HttpClientModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

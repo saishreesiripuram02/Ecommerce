@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartItem } from 'src/app/Interface/cart-item';
-import { Item } from 'src/app/Interface/items';
 import { ItemService } from 'src/app/Services/item.service';
 
 @Component({
@@ -28,6 +27,9 @@ export class AddProductComponent {
         alert("Created successfully!");
         this.product.reset();
     });
+  }
+  reset(){
+    this.product.reset()
   }
 
 

@@ -1,7 +1,14 @@
 .example-form {
     min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+    max-width: 1500px;
+
+    /* display: flex;
+    flex-direction: column; */
+    margin: 20px ;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
   }
   
   .example-full-width {
@@ -10,4 +17,11 @@
 
   .btn{
     display: flex;
+    
   }
+  .div-btn{
+    display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+  
