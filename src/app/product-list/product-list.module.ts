@@ -4,6 +4,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { SearchModule } from '../search/search.module';
 import { ProductModule } from '../product/product.module';
 import { RouterModule, Routes } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [
     {
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     SearchModule,
     ProductModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild(routes)
   ]
 })

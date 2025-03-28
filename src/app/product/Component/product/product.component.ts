@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { Item } from 'src/app/Interface/items';
 import { CartService } from 'src/app/Services/cart.service';

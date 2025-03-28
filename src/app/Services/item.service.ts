@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SERVER_URL } from '../api';
 import { Item} from '../Interface/items';
+import { delay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ItemService {
 
   loadAllItemsFromApi(){
   let url = `${SERVER_URL}/items`;
-    return this.httpClient.get<Item[]>(url);
+    return this.httpClient.get<Item[]>(url).pipe(delay(3000));
   }
 
     
