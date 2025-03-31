@@ -1,9 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { catchError, of } from 'rxjs';
 import { Item } from 'src/app/Interface/items';
 import { CartService } from 'src/app/Services/cart.service';
 import { ItemService } from 'src/app/Services/item.service';
+import { ViewProductComponent } from 'src/app/view-product/Component/view-product/view-product.component';
 
 @Component({
   selector: 'app-product',
@@ -16,10 +18,12 @@ export class ProductComponent {
   @Output() onDeleting = new EventEmitter()
 
   constructor( private cartService: CartService ,
-              private itemService:ItemService
-   ){}
+              private itemService:ItemService,
+              public dialog: MatDialog){}
 
-
+ngOnInit(){
+  console.log(this.singleItem.name)
+}
 
   addToCart(){
 
@@ -51,4 +55,12 @@ export class ProductComponent {
 
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(ViewProductComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
+

@@ -1,5 +1,17 @@
-.itemslist{
+.itemslist {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
-}
+  }
+  
+  .product-item {
+ 
+    padding: 11px;
+    text-align: center;
+  }
+
+  .product-item:hover{
+    background-color: rgb(114, 114, 137); 
+    transform: scale(1.05);
+ 
+  }

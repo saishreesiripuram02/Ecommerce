@@ -6,7 +6,7 @@ import { ItemService } from 'src/app/Services/item.service';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent  implements OnInit{
 
@@ -23,12 +23,11 @@ export class ProductListComponent  implements OnInit{
   }
     
   loadAllItems(){
-    this.isLoading = true;
-    
+    this.isLoading = true; 
     this.itemService.loadAllItemsFromApi().subscribe( items =>{
       this.items = items;
-      this.changeDetectorRef.markForCheck();
       this.isLoading = false;
+      this.changeDetectorRef.markForCheck();
     })
 
 
@@ -43,5 +42,12 @@ export class ProductListComponent  implements OnInit{
       item.name.toLowerCase().includes(this.searchValue.toLowerCase())
     )
   }
+
+  
+  itemTrackBy(index:number, item:Item) {
+    return item.id;
+  }
+
+
 
 }

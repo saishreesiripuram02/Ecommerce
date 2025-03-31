@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="singleItem.inStock; else outOfStock">
   <mat-card-header>
     <mat-card-title-group>
       <mat-card-title> {{singleItem.name}}</mat-card-title>
@@ -20,6 +20,15 @@
       <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="delete()">
         <mat-icon >delete</mat-icon>
       </button>
+      <button mat-mini-fab color="primary"  (click)="openDialog()">
+        <mat-icon >visibility</mat-icon>
+        
+      </button>
 
     </mat-card-actions>
 </mat-card>
+
+
+<ng-template #outOfStock>
+
+</ng-template>

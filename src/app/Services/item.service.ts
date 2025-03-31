@@ -12,7 +12,7 @@ export class ItemService {
 
   loadAllItemsFromApi(){
   let url = `${SERVER_URL}/items`;
-    return this.httpClient.get<Item[]>(url).pipe(delay(2000));
+    return this.httpClient.get<Item[]>(url).pipe(delay(500));
   }
 
     

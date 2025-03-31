@@ -4,6 +4,7 @@ import { CartComponent } from './Component/cart/cart.component';
 import { RouterModule, Routes } from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 
 const routes:Routes= [{
@@ -19,7 +20,8 @@ const routes:Routes= [{
     CommonModule,
     RouterModule.forChild(routes),
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class CartModule { }

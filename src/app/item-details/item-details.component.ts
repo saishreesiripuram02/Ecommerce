@@ -28,11 +28,9 @@ export class ItemDetailsComponent implements OnInit {
   gettingValueFromIdValue(){
     if(this.id){
       try{
-        this.itemService.loadItemByIdFromApi(this.id).pipe(catchError((err : HttpErrorResponse) => of(err))).subscribe( resp =>{
-         
+        this.itemService.loadItemByIdFromApi(this.id).pipe(catchError((err : HttpErrorResponse) => of(err))).subscribe( resp =>{   
           // console.log(this.item);
           // this.isIdValid = true;
-
           if(resp.ok){
             this.item = resp.body;
             this.isIdValid = true;
@@ -40,7 +38,6 @@ export class ItemDetailsComponent implements OnInit {
             this.item = null;
             this.isIdValid = false;
           }
-
         });
       }catch(e){
         this.isIdValid = false;

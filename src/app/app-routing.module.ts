@@ -26,7 +26,10 @@ const routes: Routes = [
       }
     ]
   },
-
+  {
+   path:'view',
+   loadChildren: () => import('./view-product/view-product.module').then(mod => mod.ViewProductModule)
+  },
   {
     path: "cart",
     loadChildren: () => import("./cart/cart.module").then(mod => mod.CartModule)

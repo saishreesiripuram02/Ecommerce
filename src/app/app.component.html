@@ -1,13 +1,11 @@
 <app-top-navigation (toggle)="drawer.toggle()"></app-top-navigation>
 <mat-drawer-container class="toggle-bar" autosize>
-  <mat-drawer #drawer  mode="side">
+  <mat-drawer #drawer mode="side">
     <app-side-navigation></app-side-navigation>
   </mat-drawer>
 
   <div class="sidenav-content">
-     <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 
 </mat-drawer-container>
-
-
