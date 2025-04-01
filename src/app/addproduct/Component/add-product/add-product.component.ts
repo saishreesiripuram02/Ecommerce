@@ -9,10 +9,7 @@ import { ItemService } from 'src/app/Services/item.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent {
-
   id!:CartItem
-
-   
   product =  new FormGroup({
     name : new FormControl( "", [Validators.required]),
     description : new FormControl("", [Validators.required]),

@@ -34,6 +34,7 @@ export class TopNavigationComponent implements OnInit {
 
    countValue(){
         this.count = this.cartService.getCartItems()
+     
    }
      gettingUserDetails(){
       
