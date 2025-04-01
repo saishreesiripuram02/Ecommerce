@@ -1,0 +1,23 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="toggleNav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span mat-icon-button color="primary" aria-label="Example icon button with a home icon" routerLink="">
+      <mat-icon class="icon">home</mat-icon>
+    </span>
+    <span class="example-spacer"></span>
+    <!-- <button mat-icon-button class="example-icon favorite-icon">{{user.name.charAt(0)}}</button> -->
+    <span mat-raised-button (click)="openDialog('0ms', '0ms')" class="icon">
+      <div class="profile-avatar">
+        {{ user ? user.name.charAt(0) : '' }}
+      </div>
+    </span>
+   
+    
+    
+     <a mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon routerLink="/cart">shopping_cart_checkout</mat-icon>{{count.length}}
+    </a>
+  </mat-toolbar>
+</p>

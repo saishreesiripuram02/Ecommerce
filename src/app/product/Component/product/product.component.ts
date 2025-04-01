@@ -5,7 +5,7 @@ import { catchError, of } from 'rxjs';
 import { Item } from 'src/app/Interface/items';
 import { CartService } from 'src/app/Services/cart.service';
 import { ItemService } from 'src/app/Services/item.service';
-import { ViewProductComponent } from 'src/app/view-product/Component/view-product/view-product.component';
+import { ViewProductComponent } from '../view-product/view-product.component';
 
 @Component({
   selector: 'app-product',
@@ -56,7 +56,12 @@ ngOnInit(){
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ViewProductComponent);
+    const dialogRef = this.dialog.open(ViewProductComponent, {
+      data:{
+        id : this.singleItem.id as number,
+        item : this.singleItem
+      }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

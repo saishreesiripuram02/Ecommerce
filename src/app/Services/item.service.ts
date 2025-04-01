@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { SERVER_URL } from '../api';
 import { Item} from '../Interface/items';
 import { delay } from 'rxjs';
+import { User } from '../Interface/user.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +41,8 @@ export class ItemService {
     deletFromApi(id:number){
           return this.httpClient.delete(`${SERVER_URL}/items/${id}`, { observe:"response"})
      }
+
+   userDetails(){
+       return this.httpClient.get<User>(`${SERVER_URL}/user/current-user`);
+   }
 }

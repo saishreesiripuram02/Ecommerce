@@ -6,11 +6,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ViewProductComponent } from './Component/view-product/view-product.component';
 
 
 @NgModule({
   declarations: [
-    ProductComponent
+    ProductComponent,
+    ViewProductComponent
   ],
   imports: [
     CommonModule,

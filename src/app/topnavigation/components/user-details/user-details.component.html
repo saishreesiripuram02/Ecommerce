@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Personal Details</h1>
+  <ul  *ngIf="user else loading">
+    <li>{{user.name}}</li>
+    <li>{{user.fullName}} </li>
+    <li>{{user.role}}</li>
+  </ul>
+  <ng-template #loading>
+    <p>Loading user details...</p>
+  </ng-template>
+
+  

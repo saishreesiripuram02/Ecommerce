@@ -11,7 +11,7 @@
   }
 
   .product-item:hover{
-    background-color: rgb(114, 114, 137); 
+    background-color: rgb(199, 198, 198);
     transform: scale(1.05);
  
   }
