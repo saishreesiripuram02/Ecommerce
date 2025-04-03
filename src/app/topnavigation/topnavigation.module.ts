@@ -4,10 +4,10 @@ import { TopNavigationComponent } from './components/top-navigation/top-navigati
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { UserdetailsModule } from '../userdetails/userdetails.module';
 
 
 
@@ -15,8 +15,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
-    TopNavigationComponent,
-    UserDetailsComponent
+    TopNavigationComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +24,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     RouterModule,
     MatDialogModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    UserdetailsModule
   ],
   exports:[
     TopNavigationComponent

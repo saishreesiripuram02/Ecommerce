@@ -14,8 +14,6 @@ export class ItemDetailsComponent implements OnInit {
   id!: string; 
   isIdValid = true;
   item!:Item | null;
-
-
   constructor(
     private itemService: ItemService,
     private activatedRoute: ActivatedRoute
@@ -29,8 +27,6 @@ export class ItemDetailsComponent implements OnInit {
     if(this.id){
       try{
         this.itemService.loadItemByIdFromApi(this.id).pipe(catchError((err : HttpErrorResponse) => of(err))).subscribe( resp =>{   
-          // console.log(this.item);
-          // this.isIdValid = true;
           if(resp.ok){
             this.item = resp.body;
             this.isIdValid = true;
@@ -46,7 +42,3 @@ export class ItemDetailsComponent implements OnInit {
   }
 
 }
-
-//  
-//
-//

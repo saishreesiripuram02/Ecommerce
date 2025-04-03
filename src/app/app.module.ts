@@ -8,19 +8,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { SidenavigationModule } from './sidenavigation/sidenavigation.module';
 import { TopnavigationModule } from './topnavigation/topnavigation.module';
 import { HttpClientModule } from '@angular/common/http';
-import { UpdateProductComponent } from './update-product/update-product.component';
-import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
-import {MatButtonModule} from '@angular/material/button';
 import { ItemDetailsComponent } from './item-details/item-details.component';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    UpdateProductComponent,
     ErrorComponent,
     ItemDetailsComponent
   ],
@@ -31,11 +24,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     MatSidenavModule,
     SidenavigationModule,
     TopnavigationModule,
-    HttpClientModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

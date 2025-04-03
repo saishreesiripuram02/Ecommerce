@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddProductComponent } from './Component/add-product/add-product.component';
+import { AddProductComponent } from './Component/addProduct/add-product.component';
 import {  RouterModule, Routes } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';

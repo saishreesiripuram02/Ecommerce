@@ -1,6 +1,5 @@
-import { validateVerticalPosition } from '@angular/cdk/overlay';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartItem } from 'src/app/Interface/cart-item';
 import { ItemService } from 'src/app/Services/item.service';
 
@@ -18,7 +17,7 @@ export class AddProductComponent {
     price : new FormControl("",   {validators:[Validators.required], nonNullable:true}),
     inStock : new FormControl("",   {validators:[Validators.required], nonNullable:true}),
     availableColors : new FormArray([
-         new FormControl('',{ validators:[Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')], nonNullable:true})
+         new FormControl("",{ validators:[Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')], nonNullable:true})
     ]) 
   })
 
@@ -29,32 +28,27 @@ export class AddProductComponent {
     const newItem = this.product.getRawValue() as any;
     this.itemService.AddedItemFromAPi(newItem).subscribe(val => {
         alert("Created successfully!");       
-        this.onReset();
+     this.onReset()
         // this.product.invalid;
         this.changeDetectorRef.markForCheck();
 
     });
 
-    console.log(this.product.value)
   }
 
-  onAfterAddingDisabled( val :string , control:AbstractControl<string, string> | null){
-    if(control){
-      if(val === 'focus'){
-        control.enable()
-      }else if (control.valid){
-        control.disable()
-      }
 
-    } 
-    this.changeDetectorRef.markForCheck();
-
-  }
 
   onReset(){
+    const availableColorsCtrls = this.product.get('availableColors') as FormArray;
+
+    if(availableColorsCtrls && availableColorsCtrls.length > 1){
+      availableColorsCtrls.controls.splice(1);
+    }
+
     this.product.reset();
-    this.product.enable();
+    this.product.enable(); 
   }
+  
    
   get colors(){
     return (this.product.get('availableColors') as FormArray).controls
@@ -65,10 +59,14 @@ export class AddProductComponent {
    if(addingColor){
     addingColor.push(    
       new FormControl('',{ validators:[Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')], nonNullable:true})
-    )
-
- 
+    ) 
    }
+  }
+  onDeleting(index: number) {
+    const availableColorsCtrls = this.product.get('availableColors') as FormArray;
+    if (availableColorsCtrls && availableColorsCtrls.length > index) {
+      availableColorsCtrls.removeAt(index);
+    }
   }
 
 

@@ -1,0 +1,50 @@
+<form *ngIf="isIdValid; else INVALID_ID" class="example-form" [formGroup]="product" (submit)="updateItems()">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Item Name</mat-label>
+      <input matInput placeholder="Ex. mouse" formControlName="name">
+      <mat-error *ngIf="product.get('name')?.hasError('required')">Item name is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Leave a comment on Item</mat-label>
+      <textarea matInput placeholder="Ex. It makes me feel..." formControlName="description"></textarea>
+      <mat-error *ngIf="product.get('description')?.hasError('required')">Description is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field floatLabel="always" appearance="outline">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" class="example-right-align" placeholder="0" formControlName="price">
+      <span matTextPrefix>$&nbsp;</span>
+      <span matTextSuffix>.00</span>
+      <mat-error *ngIf="product.get('price')?.hasError('required')">Price is required</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Available</mat-label>
+      <input matInput placeholder="Ex. 94105" formControlName="inStock">
+      <mat-error *ngIf="product.get('inStock')?.hasError('required')">Stock quantity is required</mat-error>
+    </mat-form-field>
+  
+    <div formArrayName="availableColors">
+      <label>Available Colors</label>
+      <mat-form-field class="example-full-width" appearance="outline" *ngFor="let colorCtrl of colors; let i = index">
+        <input matInput placeholder="Ex. red" [formControlName]="i">
+        <button type="button" (click)="onDeleting(i)">Delete</button>
+        <mat-error *ngIf="colorCtrl.hasError('required')">Color is required</mat-error>
+      </mat-form-field>
+    </div>
+  
+    <button (click)="onAddingColor()" type="button" [disabled]="product.get('availableColors')?.invalid">
+      <!-- <mat-icon>add</mat-icon> -->
+       Add Color
+    </button>
+  
+    <div class="div-btn">
+      <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="product.invalid">Update</button>
+    </div>
+  </form>
+  
+  <ng-template #INVALID_ID>
+    <h3>ID: {{id}} is invalid</h3>
+  </ng-template>
+  

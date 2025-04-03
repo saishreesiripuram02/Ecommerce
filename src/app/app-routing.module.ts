@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UpdateProductComponent } from './update-product/update-product.component';
 import { ErrorComponent } from './error/error.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 
@@ -18,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: "update/:id",
-        component: UpdateProductComponent
+       loadChildren: ()=> import('./updateproducts/update-products.module').then(mod => mod.UpdateProductsModule)
       },
       {
         path: "details/:id",
