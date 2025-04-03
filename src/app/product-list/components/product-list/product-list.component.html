@@ -1,3 +1,5 @@
+
+<p>Welcome<span [ngStyle]="{'color':'green'}" *ngIf="user"> {{user.fullName}}</span></p>
 <app-search (searchValue)="searchingValues($event)"  [isLoading]="isLoading"></app-search>
 
 <mat-spinner *ngIf="isLoading"></mat-spinner>

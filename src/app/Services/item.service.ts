@@ -42,7 +42,5 @@ export class ItemService {
           return this.httpClient.delete(`${SERVER_URL}/items/${id}`, { observe:"response"})
      }
 
-   userDetails(){
-       return this.httpClient.get<User>(`${SERVER_URL}/user/current-user`);
-   }
+
 }

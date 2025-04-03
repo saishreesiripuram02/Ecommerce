@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { catchError, of } from 'rxjs';
 import { Item } from 'src/app/Interface/items';
@@ -48,8 +48,6 @@ ngOnInit(){
       }else{
         alert("Failed to delete")
       }
-      
-
      })
     }
 

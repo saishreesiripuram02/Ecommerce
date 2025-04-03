@@ -1,8 +1,10 @@
-<form class="example-form " [formGroup]="product" (submit)="addItems()">
+<form class="example-form " [formGroup]="product" (submit)="addItems()" (reset)="onReset()">
     <mat-form-field class="example-full-width" appearance="outline">
       
       <mat-label>Item Name</mat-label>
-      <input matInput placeholder="Ex. mouse" formControlName="name" >
+      <input matInput placeholder="Ex. mouse" formControlName="name" 
+      (focus)="onAfterAddingDisabled('focus',product.get('name'))"
+      (blur)="onAfterAddingDisabled('blur',product.get('name'))">
      
     </mat-form-field>
     
@@ -23,11 +25,23 @@
         <input matInput  placeholder="Ex. 94105"  formControlName="inStock">
         <mat-hint ></mat-hint>
       </mat-form-field>
+    <div>
+
+    <div formArrayName="availableColors">
+      <label>Available Colors</label>
+      <mat-form-field class="example-full-width" appearance="outline" *ngFor=" let colorCtrl of colors ; let i = index" >   
+        <input matInput placeholder="Ex. mouse" [formControlName]='i' >
+        <mat-error>{{colorCtrl.errors | json}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    </div>
+    <button (click)="onAddingColor()" type="button"[disabled]="product.get('availableColors')?.invalid" ><mat-icon>add</mat-icon></button>
+
 
     <div class="div-btn">
       <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="product.invalid">Add</button>
-    <button mat-raised-button color="primary" class="btn" type="reset" (clicked)="reset()">Reset</button>
-
+      <button mat-raised-button color="primary" class="btn" type="reset" >Reset</button>
     </div>
   </form>
   

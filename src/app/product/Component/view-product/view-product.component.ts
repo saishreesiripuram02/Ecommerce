@@ -21,6 +21,7 @@ export class ViewProductComponent {
   ) {
 
     this.item = this.data.item;
+    console.log(this.item)
 
   }
 

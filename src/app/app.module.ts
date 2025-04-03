@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorComponent } from './error/error.component';
 import {MatButtonModule} from '@angular/material/button';
 import { ItemDetailsComponent } from './item-details/item-details.component';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
     HttpClientModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

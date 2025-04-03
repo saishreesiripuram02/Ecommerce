@@ -5,6 +5,7 @@ import { User } from 'src/app/Interface/user.model';
 import { CartService } from 'src/app/Services/cart.service';
 import { ItemService } from 'src/app/Services/item.service';
 import { UserDetailsComponent } from '../user-details/user-details.component';
+import { UserService } from 'src/app/Services/user-service/user.service';
 
 @Component({
   selector: 'app-top-navigation',
@@ -17,12 +18,15 @@ export class TopNavigationComponent implements OnInit {
 
   @Output() toggle = new EventEmitter()
 
+  
+
   toggleNav(){
     this.toggle.emit()
   }
     constructor( private cartService:CartService,
                 private itemService:ItemService,
-                public dialog: MatDialog
+                public dialog: MatDialog,
+                private userService:UserService
     ){
       
     }
@@ -38,7 +42,7 @@ export class TopNavigationComponent implements OnInit {
    }
      gettingUserDetails(){
       
-     this.itemService.userDetails().subscribe( user =>{
+     this.userService.userDetails().subscribe( user =>{
       this.user = user
       console.log(user)
      })

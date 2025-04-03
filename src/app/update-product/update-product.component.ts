@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from '../Services/item.service';
 import { catchError, of } from 'rxjs';
-import { SlicePipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-update-product',
@@ -15,11 +15,15 @@ export class UpdateProductComponent implements OnInit {
   id !: string | null;
   isIdValid = false;
 
+
   product =  new FormGroup({
-    name : new FormControl( "", [Validators.required]),
-    description : new FormControl("", [Validators.required]),
-    price : new FormControl<number>(0, [Validators.required]),
-    inStock : new FormControl<number>(0, [Validators.required]),
+    name : new FormControl( "", {validators:[Validators.required], nonNullable:true}),
+    description : new FormControl("", {validators:[Validators.required], nonNullable:true}),
+    price : new FormControl<number>(0, {validators:[Validators.required], nonNullable:true}),
+    inStock : new FormControl<number>(0, {validators:[Validators.required], nonNullable:true}),
+     availableColors : new FormArray([
+             new FormControl('',{ validators:[Validators.required], nonNullable:true})
+        ]) 
   });
 
   constructor( private activatedRoute:ActivatedRoute,
@@ -35,10 +39,32 @@ export class UpdateProductComponent implements OnInit {
   getProductDetails(){
 
     if(this.id){
-        this.itemService.loadItemByIdFromApi(this.id).pipe(catchError(err => of(err))).subscribe(resp => {
+        this.itemService.loadItemByIdFromApi(this.id).pipe(catchError((err : HttpErrorResponse) => of(err))).subscribe(resp => {
 
           if(resp.ok){
-            this.product.setValue({name:resp.body.name, price:resp.body.price, description:resp.body.description, inStock:resp.body.inStock});
+
+            const item = resp.body;
+
+            if(item){
+           
+              if(item?.availableColors.length > 1){
+               
+                for(let i=1; i< item?.availableColors.length;i++){
+                 this.onAddingColor();
+                }
+  
+              }
+
+              this.product.setValue({
+                name: item.name, 
+                price: item.price, 
+                description: item.description, 
+                inStock: item.inStock,
+                availableColors:item.availableColors
+              });
+  
+            }
+
             this.isIdValid = true;
           }
           else
@@ -50,7 +76,7 @@ export class UpdateProductComponent implements OnInit {
   updateItems(){ 
 
     if(this.id){
-      let updateValue = this.product.value as any
+      let updateValue = this.product.getRawValue() as any
       this.itemService.updateFromApi(this.id, updateValue).subscribe(resp => {
           if(resp.ok){
               alert("Succefully Updated");
@@ -61,6 +87,36 @@ export class UpdateProductComponent implements OnInit {
       })
     }
   }
+  get colors(){
+    return (this.product.get('availableColors') as FormArray).controls
+  }
+  onAddingColor(){
+    let addingColor  = this.product.get('availableColors')  as FormArray  
+
+   if(addingColor){
+    addingColor.push(    
+      new FormControl('',{ validators:[Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')], nonNullable:true})
+    )
+ 
+   }
+  }
+
+    onAfterAddingDisabled( val :string , control:AbstractControl<string, string> | null){
+      if(control){
+        if(val === 'focus'){
+          control.enable()
+        }else if (control.valid){
+          control.disable()
+        }
+  
+      } 
+  
+    }
+
+    onReset(){
+      this.product.reset();
+      this.product.enable();
+    }
 
 
 }

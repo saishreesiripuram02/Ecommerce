@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/Interface/user.model';
 import { ItemService } from 'src/app/Services/item.service';
+import { UserService } from 'src/app/Services/user-service/user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -11,13 +12,15 @@ export class UserDetailsComponent implements OnInit {
   user!:User ;
   loading = true;
 
-  constructor( private itemService:ItemService){}
+  constructor( private itemService:ItemService,
+          private userService:UserService
+  ){}
   ngOnInit(): void {
     this.gettingUserDetails()  }
 
   gettingUserDetails(){
     this.loading = true
-     this.itemService.userDetails().subscribe( user => {
+     this.userService.userDetails().subscribe( user => {
       this.user = user
       this.loading = false; 
      })
