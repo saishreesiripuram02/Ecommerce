@@ -11,24 +11,24 @@ import { ItemService } from 'src/app/Services/item.service';
   styleUrls: ['./update-product.component.css']
 })
 export class UpdateProductComponent {
-  id !: string | null;
+    id !: string | null;
     isIdValid = false;
-  
   
     product =  new FormGroup({
       name : new FormControl( "", {validators:[Validators.required], nonNullable:true}),
       description : new FormControl("", {validators:[Validators.required], nonNullable:true}),
       price : new FormControl<number>(0, {validators:[Validators.required], nonNullable:true}),
       inStock : new FormControl<number>(0, {validators:[Validators.required], nonNullable:true}),
+      delivery: new FormControl<number|undefined>(0, {validators:[Validators.required], nonNullable:true}),
        availableColors : new FormArray([
                new FormControl('',{ validators:[Validators.required], nonNullable:true})
           ]) 
     });
+
   
     constructor( private activatedRoute:ActivatedRoute,
       private itemService: ItemService,
-      private router:Router
-    ){}
+      private router:Router){}
   
     ngOnInit(): void {
       this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -36,41 +36,28 @@ export class UpdateProductComponent {
     }
   
     getProductDetails(){
-  
       if(this.id){
-          this.itemService.loadItemByIdFromApi(this.id).pipe(catchError((err : HttpErrorResponse) => of(err))).subscribe(resp => {
-  
+    this.itemService.loadItemByIdFromApi(this.id).pipe(catchError((err : HttpErrorResponse) => of(err))).subscribe(resp => {
             if(resp.ok){
-  
-              const item = resp.body;
-  
-              if(item){
-             
-                if(item?.availableColors.length > 1){
-                 
+             const item = resp.body;
+              if(item){           
+                if(item?.availableColors.length > 1){                
                   for(let i=1; i< item?.availableColors.length;i++){
                    this.onAddingColor();
-                  }
-    
-                }
-  
+                  }}
                 this.product.setValue({
-                  name: item.name, 
-                  price: item.price, 
-                  description: item.description, 
+                  name: item.name,
+                  price: item.price,
+                  description: item.description,
                   inStock: item.inStock,
-                  availableColors:item.availableColors
-                });
-    
-              }
-  
+                  availableColors: item.availableColors,
+                  delivery: item.delivery
+                })}
               this.isIdValid = true;
             }
             else
               this.isIdValid = false;
-          })
-      }
-    }
+          })}}
   
     updateItems(){ 
   
@@ -82,32 +69,24 @@ export class UpdateProductComponent {
                 this.router.navigateByUrl("/")
             }else{
               alert("Failed to Update")
-            }
-        })
-      }
-    }
+            }})}}
+
+    
     get colors(){
       return (this.product.get('availableColors') as FormArray).controls
     }
     onAddingColor(){
       let addingColor  = this.product.get('availableColors')  as FormArray  
-  
      if(addingColor){
       addingColor.push(    
         new FormControl('',{ validators:[Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')], nonNullable:true})
-      )
-   
-     }
-    }
+      )}}
   
     onDeleting(index: number) {
       const availableColorsCtrls = this.product.get('availableColors') as FormArray;
       if (availableColorsCtrls && availableColorsCtrls.length > index) {
         availableColorsCtrls.removeAt(index);
-      }
-    }
-  
-  }
+      }}}
   
 
 

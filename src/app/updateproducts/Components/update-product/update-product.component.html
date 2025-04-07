@@ -25,7 +25,8 @@
       <mat-error *ngIf="product.get('inStock')?.hasError('required')">Stock quantity is required</mat-error>
     </mat-form-field>
   
-    <div formArrayName="availableColors">
+  <div style="display: flex; flex-direction: row; gap: 6px;">
+    <div formArrayName="availableColors" style="width: 90%;">
       <label>Available Colors</label>
       <mat-form-field class="example-full-width" appearance="outline" *ngFor="let colorCtrl of colors; let i = index">
         <input matInput placeholder="Ex. red" [formControlName]="i">
@@ -33,12 +34,20 @@
         <mat-error *ngIf="colorCtrl.hasError('required')">Color is required</mat-error>
       </mat-form-field>
     </div>
+    <div style="width: 10%;">
+      <button (click)="onAddingColor()" type="button" [disabled]="product.get('availableColors')?.invalid">
+        <mat-icon>add</mat-icon>
+       </button>
+    </div>
+  </div>
   
-    <button (click)="onAddingColor()" type="button" [disabled]="product.get('availableColors')?.invalid">
-      <!-- <mat-icon>add</mat-icon> -->
-       Add Color
-    </button>
-  
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Delivery On</mat-label>
+    <input matInput placeholder="Ex. mouse" formControlName="delivery" type="date">
+    <mat-error *ngIf="product.get('delivery')?.hasError('delivery')">Item name is required</mat-error>
+  </mat-form-field>
+
+
     <div class="div-btn">
       <button mat-raised-button color="primary" class="btn" type="submit" [disabled]="product.invalid">Update</button>
     </div>

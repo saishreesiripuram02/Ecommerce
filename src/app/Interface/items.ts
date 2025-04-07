@@ -5,6 +5,7 @@ export interface Item {
   price:number;
   inStock:number;
   availableColors:string[]
+  delivery?:number
 }
 
 export interface ItemByQuantity{

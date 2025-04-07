@@ -12,13 +12,12 @@ import { User } from '../Interface/user.model';
 })
 export class ItemService {
   constructor( private httpClient:HttpClient){}
-
+// "http://localhost:3000/api"
   loadAllItemsFromApi(){
   let url = `${SERVER_URL}/items`;
     return this.httpClient.get<Item[]>(url).pipe(delay(500));
   }
 
-    
   loadItemByIdFromApi(id:string){
 
     if(isNaN(id as any)){

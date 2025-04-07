@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { UpdateProductComponent } from './Components/update-product/update-product.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import {  MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 const routes: Routes=[{
   path:'',
@@ -22,7 +22,9 @@ const routes: Routes=[{
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatDatepickerModule
 
 ]
 
