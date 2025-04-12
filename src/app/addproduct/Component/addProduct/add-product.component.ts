@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CanDeactivateFn } from '@angular/router';
 import { CartItem } from 'src/app/Interface/cart-item';
 import { ItemService } from 'src/app/Services/item.service';
 
@@ -9,7 +10,7 @@ import { ItemService } from 'src/app/Services/item.service';
   styleUrls: ['./add-product.component.css'],
   changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class AddProductComponent {
+export class AddProductComponent{
   id!:CartItem
   product =  new FormGroup({
     name : new FormControl( "", {validators: [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')], nonNullable:true}),
@@ -68,6 +69,12 @@ export class AddProductComponent {
       availableColorsCtrls.removeAt(index);
     }
   }
-
+ 
+  canExit(){
+    if(this.product.dirty)
+      return window.confirm("Are you sure? you want to discard changes?");
+    else
+      return true;
+  }
 
   }

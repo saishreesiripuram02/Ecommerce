@@ -25,7 +25,7 @@
     <label>Available Colors</label>
     <mat-form-field class="example-full-width" appearance="outline" *ngFor="let colorCtrl of colors; let i = index">
       <input matInput placeholder="Ex. mouse" [formControlName]="i">
-      <button type="button" (click)="onDeleting(i)">Delete</button> <!-- Pass the index to delete -->
+      <button type="button" (click)="onDeleting(i)">Delete</button> 
     </mat-form-field>
   </div>
 

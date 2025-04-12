@@ -17,10 +17,8 @@ userDetails(){
     if(this.user){
       return of(this.user);
     }else
-      return this.httpClient.get<User>(`${SERVER_URL}/user/current-user`).pipe(tap(user => {
+      return this.httpClient.get<User>(`${SERVER_URL}/user/current-user?role=admin`).pipe(tap(user => {
         this.user = user;
       }));
 }
-
-
 }
