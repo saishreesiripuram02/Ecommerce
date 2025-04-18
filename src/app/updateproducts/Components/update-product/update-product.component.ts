@@ -60,7 +60,6 @@ export class UpdateProductComponent {
           })}}
   
     updateItems(){ 
-  
       if(this.id){
         let updateValue = this.product.getRawValue() as any
         this.itemService.updateFromApi(this.id, updateValue).subscribe(resp => {
