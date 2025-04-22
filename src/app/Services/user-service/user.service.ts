@@ -4,7 +4,6 @@ import { of, tap } from 'rxjs';
 import { SERVER_URL } from 'src/app/api';
 import { User } from 'src/app/Interface/user.model';
 
-
 @Injectable({
   providedIn: 'root'
 })

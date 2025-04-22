@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { SERVER_URL } from '../api';
 import { Item} from '../Interface/items';
 import { delay } from 'rxjs';
-import { User } from '../Interface/user.model';
+
 
 
 
